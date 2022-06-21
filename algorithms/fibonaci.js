@@ -7,6 +7,14 @@ function fibonaci(n) {
   return arr
 }
 
+function fibonaciRecursive(n, arr) {
+  
+  if (n > 0) {
+    return newArr
+  } else {
+  }
+}
+
 console.log(fibonaci(5))
 
 function oddOrEven(n) {
