@@ -7,18 +7,37 @@ function fibonaci(n) {
   return arr
 }
 
-function fibonaciRecursive(n, arr) {
-  
-  if (n > 0) {
-    return newArr
-  } else {
+function fibonaci2(n) {
+  let arr = [0]
+  let counter = 1
+  return function() {
+    if (arr.length > 1) {
+      arr.push(arr[counter] + arr[counter-1])
+    } else {
+      arr.push(1)
+    }
+    console.log(counter)
+    console.log(n)
+    counter++
+    if (n === counter) console.log(arr)
   }
 }
 
-console.log(fibonaci(5))
-
-function oddOrEven(n) {
-  return n % 2 === 0 ? "Genap" : "Ganjil"
+function runFibonaci(n) {
+  let i = 0
+  const thisFibonaci = fibonaci2(n) 
+  while (i < n) {
+    thisFibonaci()
+    i++
+  }
 }
 
-console.log(oddOrEven(4))
+runFibonaci(4)
+
+// console.log(fibonaci(5))
+
+// function oddOrEven(n) {
+//   return n % 2 === 0 ? "Genap" : "Ganjil"
+// }
+
+// console.log(oddOrEven(4))

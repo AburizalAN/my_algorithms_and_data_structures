@@ -137,6 +137,88 @@ class BinarySearchTree {
       }
     }
   }
+
+  breadthFirstSearch() {
+    let currentNode = this.root
+    let list = []
+    let queue = []
+
+    queue.push(currentNode)
+
+    while (queue.length > 0) {
+      currentNode = queue.shift()
+      list.push(currentNode.value)
+
+      if (currentNode.left) {
+        queue.push(currentNode.left)
+      }
+
+      if (currentNode.right) {
+        queue.push(currentNode.right)
+      }
+    }
+
+    return list
+
+  }
+
+  breadthFirstSearchR(queue, list) {
+    if (!queue.length) {
+      return list
+    }
+    let currentNode = queue.shift()
+    list.push(currentNode.value)
+    if (currentNode.left) {
+      queue.push(currentNode.left)
+    }
+    if (currentNode.right) {
+      queue.push(currentNode.right)
+    }
+    return this.breadthFirstSearchR(queue, list)
+  }
+
+  DFSInorder() {
+    return traverseInOrder(this.root, [])
+  }
+  DFSPreorder() {
+    return traversePostOrder(this.root, [])
+  }
+  DFSPostorder() {
+    return traversePreOrder(this.root, [])
+  }
+}
+
+function traverseInOrder(node, list) {
+  if (node.left) {
+    traverseInOrder(node.left, list)
+  }
+  list.push(node.value )
+  if (node.right) {
+    traverseInOrder(node.right, list)
+  }
+  return list
+}
+
+function traversePreOrder(node, list) {
+  list.push(node.value )
+  if (node.left) {
+    traversePreOrder(node.left, list)
+  }
+  if (node.right) {
+    traversePreOrder(node.right, list)
+  }
+  return list
+}
+
+function traversePostOrder(node, list) {
+  if (node.left) {
+    traversePostOrder(node.left, list)
+  }
+  if (node.right) {
+    traversePostOrder(node.right, list)
+  }
+  list.push(node.value )
+  return list
 }
 
 const tree = new BinarySearchTree();
@@ -147,8 +229,12 @@ tree.insert(20)
 tree.insert(170)
 tree.insert(15)
 tree.insert(1)
-console.log(JSON.stringify(traverse(tree.root)))
-console.log(tree.lookup(80))
+// console.log(JSON.stringify(traverse(tree.root)))
+// console.log(tree.lookup(80))
+console.log(tree.breadthFirstSearchR([tree.root], []))
+console.log(tree.DFSInorder())
+console.log(tree.DFSPreorder())
+console.log(tree.DFSPostorder())
 
 function traverse(node) {
   const tree = { value: node.value };
