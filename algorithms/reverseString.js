@@ -1,4 +1,4 @@
-function reverseString(str, lastIndex = null) {
+function reverseStringR(str, lastIndex = null) {
   if (lastIndex == null) lastIndex = str.length - 1
 
   if (lastIndex === 0) {
@@ -8,4 +8,17 @@ function reverseString(str, lastIndex = null) {
   }
 }
 
-console.log(reverseString("halo nama saya abu"))
+var reverseString = function(s) {
+  let i = 0;
+  let last = s.length - 1
+  let med = Math.ceil(s.length / 2)
+  while (i < med) {
+      const temp = s[i]
+      s[i] = s[last - i]
+      s[last - i] = temp
+      i++
+  }
+  return s
+};
+
+console.log(reverseString(["a", "b", "c", "d"]))
